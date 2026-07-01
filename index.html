@@ -390,6 +390,81 @@
     margin: 24px 0; font-size: 14px; color: #5C3D1E;
   }
   .alerta-icone { font-size: 20px; flex-shrink: 0; }
+
+  /* fitoterapia */
+  .ervas-intro {
+    background: #F0FAF4; border: 1px solid #B7DFC6;
+    border-radius: var(--radius); padding: 18px 20px;
+    font-size: 14px; color: #1a4d2e; margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .ervas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px; margin: 24px 0;
+  }
+  .erva-card {
+    background: var(--branco); border: 1px solid var(--borda);
+    border-radius: 12px; padding: 16px 18px;
+    border-top: 3px solid var(--verde-cl);
+  }
+  .erva-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .erva-emoji { font-size: 20px; }
+  .erva-nome  { font-size: 14px; font-weight: 600; color: var(--verde); }
+  .erva-cientifico { font-size: 11px; color: var(--texto-3); font-style: italic; }
+  .erva-desc  { font-size: 12.5px; color: var(--texto-2); line-height: 1.55; margin-bottom: 8px; }
+  .erva-uso   {
+    font-size: 11.5px; color: #27500A;
+    background: #EAF3DE; border-radius: 6px;
+    padding: 5px 10px; display: inline-block; margin-top: 2px;
+  }
+  .erva-atencao {
+    font-size: 11px; color: #8A4A00;
+    background: #FFF3E0; border-radius: 6px;
+    padding: 4px 8px; display: block; margin-top: 6px;
+  }
+  .chas-cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;
+  }
+  @media (max-width: 520px) { .chas-cols { grid-template-columns: 1fr; } }
+  .cha-col { border-radius: var(--radius); padding: 16px; }
+  .cha-col.evitar { background: #FCEBEB; border: 1px solid #F7C1C1; }
+  .cha-col.incluir { background: #EAF3DE; border: 1px solid #C0DD97; }
+  .cha-col-titulo {
+    font-size: 12px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; margin-bottom: 10px; display: block;
+  }
+  .evitar .cha-col-titulo { color: #791F1F; }
+  .incluir .cha-col-titulo { color: #27500A; }
+  .cha-item {
+    font-size: 13px; color: var(--texto); padding: 5px 0;
+    border-bottom: 0.5px solid rgba(0,0,0,.08);
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .cha-item:last-child { border-bottom: none; }
+  .cha-motivo { font-size: 11px; color: var(--texto-3); font-style: italic; }
+  .subs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0;
+  }
+  @media (max-width: 520px) { .subs-grid { grid-template-columns: 1fr; } }
+  .sub-card {
+    background: var(--branco); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sub-de { font-size: 13px; color: var(--alto-tx); font-weight: 500; }
+  .sub-seta { font-size: 18px; color: var(--verde-cl); flex-shrink: 0; }
+  .sub-por { font-size: 13px; color: var(--baixo-tx); font-weight: 500; }
+  .sub-nota { font-size: 11px; color: var(--texto-3); display: block; margin-top: 3px; font-style: italic; }
+  .cita-final {
+    background: var(--verde); color: rgba(255,255,255,.9);
+    border-radius: 12px; padding: 24px 28px;
+    text-align: center; margin-top: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-style: italic; line-height: 1.6;
+  }
+  .cita-final cite { display: block; font-size: 13px; margin-top: 10px; opacity: .7; font-style: normal; font-family: 'Inter', sans-serif; }
   .nota {
     font-size: 12.5px; color: var(--texto-3);
     border-top: 1px solid var(--borda);
@@ -430,6 +505,7 @@
     <li><a href="#beneficios">Benefícios</a></li>
     <li><a href="#legenda">Tipos de FODMAP</a></li>
     <li><a href="#tabela">Tabela de alimentos</a></li>
+    <li><a href="#fitoterapia">Ervas & especiarias</a></li>
   </ul>
 </nav>
 
@@ -651,6 +727,244 @@
   </div>
 </section>
 
+<!-- FITOTERAPIA -->
+<section id="fitoterapia">
+  <div class="container">
+    <p class="section-eyebrow">Fitoterapia & Low FODMAP</p>
+    <h2 class="section-titulo">Ervas, especiarias e chás aliados do intestino</h2>
+    <p class="section-texto">Durante o protocolo Low FODMAP, ervas e especiarias corretas não apenas dão sabor às preparações — elas podem atuar diretamente na redução de gases, distensão abdominal e desconforto digestivo. Veja abaixo o que usar e o que evitar.</p>
+
+    <div class="ervas-intro">
+      🌿 <strong>Efeito carminativo</strong> é a propriedade de reduzir a formação e facilitar a eliminação de gases intestinais. Muitas ervas possuem essa ação e são aliadas poderosas na fase de eliminação do protocolo. <br>Atenção às concentrações: mesmo ervas permitidas devem ser usadas em quantidades adequadas.
+    </div>
+
+    <p class="section-eyebrow" style="margin-top:0">Ervas com efeito carminativo — para gases e distensão</p>
+
+    <div class="ervas-grid">
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">🌿</span>
+          <div>
+            <span class="erva-nome">Hortelã</span>
+            <span class="erva-cientifico">Mentha piperita</span>
+          </div>
+        </div>
+        <p class="erva-desc">Ação carminativa, antiespasmódica e estimulante. Diminui o tônus da cárdia e facilita a eliminação de gases. Estimula a contratilidade intestinal e as secreções gástricas e biliares.</p>
+        <span class="erva-uso">✅ Usar como infusão (chá) ou em preparações com vegetais, frango e peixes</span>
+        <span class="erva-atencao">⚠️ Contraindicada para gestantes, lactantes e em casos de refluxo</span>
+      </div>
+
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">🟤</span>
+          <div>
+            <span class="erva-nome">Canela</span>
+            <span class="erva-cientifico">Cinnamomum verum</span>
+          </div>
+        </div>
+        <p class="erva-desc">Propriedade tônica, carminativa, antiespasmódica e antimicrobiana. Auxilia no tratamento sintomático de cólicas, distensão abdominal e flatulência. Estimula as funções digestivas e circulatórias.</p>
+        <span class="erva-uso">✅ Usar como decocção ou em pratos doces e salgados (até 2g)</span>
+        <span class="erva-atencao">⚠️ Contraindicada para gestantes e lactantes</span>
+      </div>
+
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">⭐</span>
+          <div>
+            <span class="erva-nome">Anis-estrelado</span>
+            <span class="erva-cientifico">Illicium verum</span>
+          </div>
+        </div>
+        <p class="erva-desc">Atividade antiespasmódica e carminativa. Os óleos essenciais e flavonoides agem na musculatura lisa do trato gastrointestinal. Estimula secreções gástricas e biliares, facilitando a digestão.</p>
+        <span class="erva-uso">✅ Usar como decocção. Combina com pimenta, canela, erva-doce e gengibre (até 2g)</span>
+        <span class="erva-atencao">⚠️ Contraindicado para gestantes, lactantes e crianças</span>
+      </div>
+
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">🟡</span>
+          <div>
+            <span class="erva-nome">Cúrcuma</span>
+            <span class="erva-cientifico">Curcuma longa</span>
+          </div>
+        </div>
+        <p class="erva-desc">Auxilia no tratamento de sintomas dispépticos e sensação de plenitude. Ação antiflatulenta, anti-inflamatória e antimicrobiana. Atividade colerética e colagoga.</p>
+        <span class="erva-uso">✅ Combina com vegetais, ovos e carnes brancas (até 2g)</span>
+        <span class="erva-atencao">⚠️ Cautela em casos de litíase biliar</span>
+      </div>
+
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">🌾</span>
+          <div>
+            <span class="erva-nome">Erva-doce</span>
+            <span class="erva-cientifico">Pimpinella anisum</span>
+          </div>
+        </div>
+        <p class="erva-desc">Auxiliar no tratamento de distensão abdominal e flatulência. A semente tem ação carminativa e melhora o peristaltismo do tubo digestivo. Favorece as secreções salivares e gástricas.</p>
+        <span class="erva-uso">✅ Usar como infusão ou decocção em baixa concentração (até 2g)</span>
+        <span class="erva-atencao">⚠️ Contraindicada para gestantes</span>
+      </div>
+
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">🍃</span>
+          <div>
+            <span class="erva-nome">Louro</span>
+            <span class="erva-cientifico">Laurus nobilis</span>
+          </div>
+        </div>
+        <p class="erva-desc">Propriedades antiespasmódica, carminativa, colagoga e tônica estomacal. Muito usado na cozinha brasileira em assados, ensopados, feijão e sopas.</p>
+        <span class="erva-uso">✅ Usar em marinadas e cozidos. Combina com carne, frango, arroz e tomate (até 1g seco)</span>
+      </div>
+
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">🌶️</span>
+          <div>
+            <span class="erva-nome">Cravo-da-índia</span>
+            <span class="erva-cientifico">Caryophyllus aromaticus</span>
+          </div>
+        </div>
+        <p class="erva-desc">Interessante em casos de inapetência, dispepsias, flatulência e diarreia. Possui alto conteúdo de eugenol com ação antimicrobiana, antifúngica e aumento do muco intestinal.</p>
+        <span class="erva-uso">✅ Combina com preparações doces como panqueca de banana (até 2g)</span>
+      </div>
+
+      <div class="erva-card">
+        <div class="erva-header">
+          <span class="erva-emoji">🫚</span>
+          <div>
+            <span class="erva-nome">Gengibre</span>
+            <span class="erva-cientifico">Zingiber officinale</span>
+          </div>
+        </div>
+        <p class="erva-desc">Auxilia em casos de dispepsia, náuseas e desconforto digestivo. Ação anti-inflamatória, antiemética e carminativa. Estimula a motilidade gástrica.</p>
+        <span class="erva-uso">✅ Usar fresco ralado, em chá ou em pó em preparações salgadas e doces</span>
+      </div>
+    </div>
+
+    <p class="section-eyebrow" style="margin-top:32px">Ervas para dispepsia e plenitude</p>
+    <div class="ervas-grid">
+      <div class="erva-card">
+        <div class="erva-header"><span class="erva-emoji">🌱</span><div><span class="erva-nome">Alecrim</span><span class="erva-cientifico">Rosmarinus officinalis</span></div></div>
+        <p class="erva-desc">Auxilia em casos de dispepsia e estimula a digestão. Propriedade tônica e carminativa leve.</p>
+        <span class="erva-uso">✅ Usar fresco em assados, grelhados e marinadas (pequena qtd.)</span>
+      </div>
+      <div class="erva-card">
+        <div class="erva-header"><span class="erva-emoji">🟡</span><div><span class="erva-nome">Limão</span><span class="erva-cientifico">Citrus limon</span></div></div>
+        <p class="erva-desc">Auxilia na digestão e estimula a produção de sucos gástricos. Pode ajudar na dispepsia e sensação de plenitude após refeições.</p>
+        <span class="erva-uso">✅ Usar o suco como tempero ou em água (até 125ml de suco)</span>
+      </div>
+      <div class="erva-card">
+        <div class="erva-header"><span class="erva-emoji">🌿</span><div><span class="erva-nome">Sálvia</span><span class="erva-cientifico">Salvia officinalis</span></div></div>
+        <p class="erva-desc">Propriedade digestiva, carminativa e antiespasmódica. Auxilia em casos de dispepsia e digestão lenta.</p>
+        <span class="erva-uso">✅ Usar fresca em preparações (até 28g fresca)</span>
+      </div>
+      <div class="erva-card">
+        <div class="erva-header"><span class="erva-emoji">🌿</span><div><span class="erva-nome">Orégano</span><span class="erva-cientifico">Origanum vulgare</span></div></div>
+        <p class="erva-desc">Propriedade antimicrobiana, antifúngica e digestiva. Auxilia na digestão e reduz o desconforto gastrointestinal.</p>
+        <span class="erva-uso">✅ Usar em pizzas, massas sem glúten, carnes e vegetais (até 3g)</span>
+      </div>
+    </div>
+
+    <!-- CHÁS -->
+    <p class="section-eyebrow" style="margin-top:32px">Chás — o que incluir e o que evitar</p>
+    <p class="section-texto" style="margin-bottom:16px">De acordo com a Monash University, alguns chás podem piorar os sintomas intestinais. A concentração do chá também importa — quanto mais concentrado, maior a quantidade de FODMAP.</p>
+
+    <div class="chas-cols">
+      <div class="cha-col evitar">
+        <span class="cha-col-titulo">🔴 Evitar</span>
+        <div class="cha-item"><span>Camomila</span><span class="cha-motivo">Alto em Frutanos</span></div>
+        <div class="cha-item"><span>Dente-de-leão</span><span class="cha-motivo">Alto em Frutanos</span></div>
+        <div class="cha-item"><span>Erva-doce (concentrado)</span><span class="cha-motivo">Alto em Frutanos em alta concentração</span></div>
+        <div class="cha-item"><span>Funcho</span><span class="cha-motivo">Alto em Frutanos</span></div>
+        <div class="cha-item"><span>Oolong</span><span class="cha-motivo">Alto em Frutanos</span></div>
+        <div class="cha-item"><span>Chai</span><span class="cha-motivo">Alto em Frutanos</span></div>
+        <div class="cha-item"><span>Alfarroba</span><span class="cha-motivo">Alto em Frutanos/GOS</span></div>
+      </div>
+      <div class="cha-col incluir">
+        <span class="cha-col-titulo">🟢 Incluir</span>
+        <div class="cha-item"><span>Chá verde</span><span class="cha-motivo">Baixo FODMAP — 1 xícara</span></div>
+        <div class="cha-item"><span>Chá preto</span><span class="cha-motivo">Baixo FODMAP — 1 xícara</span></div>
+        <div class="cha-item"><span>Chá branco</span><span class="cha-motivo">Baixo FODMAP — 1 xícara</span></div>
+        <div class="cha-item"><span>Menta / hortelã</span><span class="cha-motivo">Baixo FODMAP — efeito carminativo</span></div>
+        <div class="cha-item"><span>Alcaçuz</span><span class="cha-motivo">Baixo FODMAP em quantidade moderada</span></div>
+        <div class="cha-item"><span>Gengibre</span><span class="cha-motivo">Baixo FODMAP — auxilia na digestão</span></div>
+        <div class="cha-item"><span>Erva-doce (fraco)</span><span class="cha-motivo">Baixo FODMAP em baixa concentração</span></div>
+      </div>
+    </div>
+
+    <!-- SUBSTITUIÇÕES -->
+    <p class="section-eyebrow" style="margin-top:32px">Substituições inteligentes na cozinha</p>
+    <p class="section-texto" style="margin-bottom:16px">Durante o protocolo, alimentos altos em FODMAP podem ser substituídos por opções funcionais que mantêm o sabor sem comprometer o intestino.</p>
+
+    <div class="subs-grid">
+      <div class="sub-card">
+        <div style="flex:1">
+          <span class="sub-de">🔴 Alho</span>
+          <span class="sub-seta">→</span>
+          <span class="sub-por">🟢 Assa-fétida (em moderação)</span>
+          <span class="sub-nota">Sabor semelhante ao alho. Usar com moderação.</span>
+        </div>
+      </div>
+      <div class="sub-card">
+        <div style="flex:1">
+          <span class="sub-de">🔴 Cebola</span>
+          <span class="sub-seta">→</span>
+          <span class="sub-por">🟢 Cebolinha (parte verde)</span>
+          <span class="sub-nota">Priorizar as partes verdes — as partes brancas têm FODMAP.</span>
+        </div>
+      </div>
+      <div class="sub-card">
+        <div style="flex:1">
+          <span class="sub-de">🔴 Feijões</span>
+          <span class="sub-seta">→</span>
+          <span class="sub-por">🟢 Edamame</span>
+          <span class="sub-nota">Alternativa com menor teor de GOS.</span>
+        </div>
+      </div>
+      <div class="sub-card">
+        <div style="flex:1">
+          <span class="sub-de">🔴 Mel</span>
+          <span class="sub-seta">→</span>
+          <span class="sub-por">🟢 Maple syrup / néctar de coco</span>
+          <span class="sub-nota">Mesma função adoçante, baixo FODMAP.</span>
+        </div>
+      </div>
+      <div class="sub-card">
+        <div style="flex:1">
+          <span class="sub-de">🔴 Queijo (grande qtd.)</span>
+          <span class="sub-seta">→</span>
+          <span class="sub-por">🟢 Levedura nutricional</span>
+          <span class="sub-nota">Sabor de queijo sem lactose (até 16g).</span>
+        </div>
+      </div>
+      <div class="sub-card">
+        <div style="flex:1">
+          <span class="sub-de">🔴 Castanha de caju / pistache</span>
+          <span class="sub-seta">→</span>
+          <span class="sub-por">🟢 Semente de abóbora / castanha do Pará</span>
+          <span class="sub-nota">Mesma crocância, sem GOS.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LISTA PERMITIDOS -->
+    <p class="section-eyebrow" style="margin-top:32px">Lista completa de ervas e especiarias permitidas (Monash)</p>
+    <div style="background:var(--branco);border:1px solid var(--borda);border-radius:var(--radius);padding:18px 20px;margin-top:12px;">
+      <p style="font-size:13px;color:var(--texto-2);line-height:1.9;">
+        Açafrão (1g) · Agar-agar (7g) · Alcaparras (8g) · Alecrim · Anis-estrelado (2g) · Assa-fétida (2g) · Baunilha — essência (20g) · Baunilha — fava (8g) · Cacau em pó (8g) · Canela — pó (2g) · Capim-limão (50g) · Cardamomo (2g) · Cebolinha (4g, parte verde) · Chimichurri (40g) · Coentro — fresco (16g) · Coentro — sementes pó (2g) · Cominho — pó (2g) · Cravo — pó (2g) · Cúrcuma (2g) · Curry (2g) · Dill / endro — sementes (2g) · Ervas de Provence seca (5g) · Feno-grego pó (2g) · Folhas de louro (1g) · Funcho (2g) · Gengibre · Hortelã / menta fresca (90g) · Levedura nutricional (16g) · Limão — suco (125ml) · Manjericão · Mostarda — sementes (2g) · Mostarda Dijon (23g) · Noz-moscada (4g) · Orégano (3g) · Páprica (2g) · Pimenta Chilli (2g) · Pimenta da Jamaica (2g) · Pimenta preta (2g) · Salsinha · Sálvia fresca (28g) · Tahine (até 30g) · Tempeh (até 100g) · Tofu firme (até 170g) · Tomilho · Vinagre — exceto balsâmico (30g)
+      </p>
+      <p style="font-size:11px;color:var(--texto-3);margin-top:10px;">Fonte: Monash University App. *Na forma fresca — até 16g | *Na forma seca — até 2g</p>
+    </div>
+
+    <blockquote class="cita-final">
+      "Faça do seu alimento o seu medicamento."
+      <cite>— Hipócrates</cite>
+    </blockquote>
+  </div>
+</section>
+
 <!-- CTA INSTAGRAM -->
 <div class="ig-cta-wrap">
   <a class="ig-footer" href="https://www.instagram.com/ramonnicotari" target="_blank" rel="noopener" aria-label="Instagram Dr. Ramon Nicotari">
@@ -686,9 +1000,12 @@ const secoes = [
       {nome:"Lichia",              tags:["Poliós"]},
       {nome:"Caqui",               tags:["Frutanos"]},
       {nome:"Tâmaras",             tags:["Frutanos","Frutose"]},
+      {nome:"Amora",               tags:["Frutose","Poliós"]},
+      {nome:"Figo fresco",         tags:["Frutose","Frutanos"]},
+      {nome:"Toranja / grapefruit",tags:["Frutanos"]},
       {nome:"Frutas secas (geral)",tags:["Frutose","Poliós","Frutanos"]},
     ],
-    baixo:["Laranja","Banana madura","Uvas","Kiwi","Morango","Abacaxi","Mamão","Framboesas","Melão cantaloupe"]
+    baixo:["Laranja","Banana madura","Uvas","Kiwi","Morango","Abacaxi","Mamão","Framboesas","Melão cantaloupe","Maracujá","Mirtilo (blueberry)","Carambola","Limão / lima"]
   },
   { emoji:"🥦", nome:"Vegetais",
     alto:[
@@ -706,8 +1023,10 @@ const secoes = [
       {nome:"Aipo (salsão)",     tags:["Poliós"]},
       {nome:"Repolho",           tags:["Frutanos"]},
       {nome:"Quiabo",            tags:["Frutanos","GOS"]},
+      {nome:"Milho",             tags:["Poliós"]},
     ],
-    baixo:["Pimentão","Abobrinha","Batata inglesa","Feijão verde","Berinjela","Cenoura","Abóbora","Alface","Pepino","Tomate"]
+    baixo:["Pimentão","Abobrinha","Batata inglesa","Feijão verde","Berinjela","Cenoura","Abóbora","Alface","Pepino","Tomate","Espinafre","Acelga","Broto de feijão","Endívia","Azeitonas","Nabo","Cebolinha (pequena qtd.)"],
+    moderado:["Inhame / cará (porção pequena)","Batata-baroa"]
   },
   { emoji:"🍞", nome:"Grãos e cereais",
     alto:[
@@ -718,7 +1037,7 @@ const secoes = [
       {nome:"Macarrão de trigo",      tags:["Frutanos"]},
       {nome:"Cuscuz",                 tags:["Frutanos"]},
     ],
-    baixo:["Arroz","Quinoa","Aveia","Farinha de milho","Macarrão sem glúten","Bolachas de arroz","Macarrão konjac"],
+    baixo:["Arroz","Quinoa","Aveia (sem glúten)","Farinha de milho","Macarrão sem glúten","Bolachas de arroz","Macarrão konjac","Trigo sarraceno","Tapioca","Painço","Amaranto","Polenta"],
     moderado:["Lentilha (porção controlada)","Grão de bico (½ xíc. enlatado)"]
   },
   { emoji:"🥛", nome:"Laticínios",
@@ -731,8 +1050,8 @@ const secoes = [
       {nome:"Leite condensado",                     tags:["Lactose"]},
       {nome:"Creme chantilly",                      tags:["Lactose"]},
     ],
-    baixo:["Leite sem lactose","Queijos amarelos (parmesão, cheddar)","Manteiga / ghee","Leite de amêndoa / arroz","Iogurte natural (pequena qtd.)"],
-    moderado:["Queijo feta","Mozzarella","Brie"]
+    baixo:["Leite sem lactose","Queijos amarelos (parmesão, cheddar)","Manteiga / ghee","Leite de amêndoa","Leite de arroz","Iogurte natural (pequena qtd.)"],
+    moderado:["Queijo feta","Mozzarella","Brie / camembert","Leite de coco (½ xíc.)","Leite de aveia (1 copo)"]
   },
   { emoji:"🫘", nome:"Leguminosas e oleaginosas",
     alto:[
@@ -742,30 +1061,49 @@ const secoes = [
       {nome:"Pistache",                         tags:["GOS","Frutanos"]},
       {nome:"Castanha de caju",                 tags:["GOS","Frutanos"]},
     ],
-    baixo:["Amendoim","Macadâmia","Castanha do Pará","Nozes","Sementes de girassol","Gergelim"]
+    baixo:["Amendoim","Macadâmia","Castanha do Pará","Nozes","Nozes pecã","Sementes de girassol","Gergelim","Sementes de abóbora (pepitas)","Chia","Linhaça"],
+    moderado:["Amêndoas (até 10 unidades)","Avelãs (até 10 unidades)"]
   },
   { emoji:"🥩", nome:"Carnes, aves e ovos",
     alto:[
       {nome:"Linguiça / salame / salsicha",    tags:["Frutanos"]},
       {nome:"Carnes com molhos prontos",       tags:["Frutanos"]},
     ],
-    baixo:["Carnes e aves cozidas simples","Frutos do mar","Ovos"]
+    baixo:["Carne bovina (simples)","Frango / peru","Peixe / salmão / atum","Frutos do mar","Ovos","Cordeiro","Carne suína (lombo simples)"]
   },
   { emoji:"🍯", nome:"Açúcares e adoçantes",
     alto:[
-      {nome:"Mel",                    tags:["Frutose"]},
-      {nome:"Agave",                  tags:["Frutose"]},
-      {nome:"Xarope de milho / melaço",tags:["Frutose"]},
-      {nome:"Sorbitol / manitol / xilitol", tags:["Poliós"]},
+      {nome:"Mel",                         tags:["Frutose"]},
+      {nome:"Agave",                       tags:["Frutose"]},
+      {nome:"Xarope de milho / melaço",    tags:["Frutose"]},
+      {nome:"Sorbitol / manitol / xilitol",tags:["Poliós"]},
     ],
-    baixo:["Açúcar refinado","Açúcar mascavo","Chocolate amargo","Maple syrup (xarope de bordo)"]
+    baixo:["Açúcar refinado","Açúcar mascavo / demerara","Chocolate amargo (20g)","Maple syrup (xarope de bordo)","Néctar de coco","Stévia","Cacau em pó"]
   },
   { emoji:"🌿", nome:"Temperos e molhos",
     alto:[
       {nome:"Molhos com alho e cebola",   tags:["Frutanos"]},
       {nome:"Marinadas industrializadas", tags:["Frutanos"]},
     ],
-    baixo:["Açafrão","Orégano","Canela","Gengibre","Maionese caseira","Shoyu","Suco de cranberry"]
+    baixo:["Açafrão","Orégano","Canela","Gengibre","Maionese caseira","Shoyu / molho de soja","Suco de cranberry","Mostarda","Vinagre de arroz","Vinagre de maçã","Vinagre balsâmico (1 c. sopa)","Azeite / óleos em geral","Páprica","Cúrcuma","Cominho","Hortelã","Salsa / coentro","Tomilho / alecrim","Pimenta do reino"]
+  },
+  { emoji:"🥤", nome:"Bebidas",
+    alto:[
+      {nome:"Cerveja",                          tags:["Frutanos"]},
+      {nome:"Suco de frutas (industrializado)", tags:["Frutose"]},
+      {nome:"Refrigerante comum",               tags:["Frutose"]},
+      {nome:"Rum",                              tags:["Frutose"]},
+      {nome:"Chá de camomila",                  tags:["Frutanos"]},
+      {nome:"Chá de erva-doce",                 tags:["Frutanos"]},
+      {nome:"Chá de dente de leão",             tags:["Frutanos"]},
+      {nome:"Chá chai",                         tags:["Frutanos"]},
+    ],
+    baixo:["Água","Café puro (1 xíc.)","Chá preto (1 xíc.)","Chá verde (1 xíc.)","Chá de gengibre","Chá de hortelã","Refrigerante zero (sem adoçante poliol)","Vinho tinto / branco (1 taça)","Vodka / whisky / gin (1 dose)"],
+    moderado:["Kombucha (½ xíc.)","Água de coco (½ xíc.)","Leite de coco (½ xíc.)","Leite de aveia (1 copo)"]
+  },
+  { emoji:"🫒", nome:"Óleos e gorduras",
+    alto:[],
+    baixo:["Azeite de oliva","Óleo de coco","Óleo de gergelim","Óleo de abacate","Óleo de arroz","Manteiga","Ghee","Todos os óleos vegetais puros"]
   },
 ];
 
