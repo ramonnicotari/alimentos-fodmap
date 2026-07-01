@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabela de Alimentos Low FODMAP</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde:       #2D6A4F;
+    --verde-cl:    #52B788;
+    --verde-bg:    #D8F3DC;
+    --creme:       #F9F5EF;
+    --creme2:      #EFE8DC;
+    --texto:       #1C1C1A;
+    --texto-2:     #4A4A46;
+    --texto-3:     #7A7A72;
+    --borda:       #DDD8CF;
+    --branco:      #FFFFFF;
+
+    /* tags FODMAP */
+    --frutose-bg:  #FAC775; --frutose-tx:  #412402;
+    --lactose-bg:  #B5D4F4; --lactose-tx:  #042C53;
+    --frutanos-bg: #CECBF6; --frutanos-tx: #26215C;
+    --poliois-bg:  #F5C4B3; --poliois-tx:  #4A1B0C;
+    --gos-bg:      #9FE1CB; --gos-tx:      #04342C;
+
+    /* categorias */
+    --cat-frutas-bg:   #FBEAF0; --cat-frutas-tx:   #4B1528;
+    --cat-veg-bg:      #EAF3DE; --cat-veg-tx:      #173404;
+    --cat-graos-bg:    #EEEDFE; --cat-graos-tx:    #26215C;
+    --cat-lat-bg:      #E6F1FB; --cat-lat-tx:      #042C53;
+    --cat-leg-bg:      #E1F5EE; --cat-leg-tx:      #04342C;
+    --cat-nozes-bg:    #FAEEDA; --cat-nozes-tx:    #412402;
+    --cat-carnes-bg:   #F1EFE8; --cat-carnes-tx:   #2C2C2A;
+    --cat-acucares-bg: #FAECE7; --cat-acucares-tx: #4A1B0C;
+    --cat-temperos-bg: #FEF3E2; --cat-temperos-tx: #5C3D1E;
+
+    --alto-bg:  #FCEBEB; --alto-borda: #E24B4A; --alto-tx: #791F1F;
+    --baixo-bg: #EAF3DE; --baixo-borda:#639922; --baixo-tx: #27500A;
+    --radius: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  /* ─── FAIXA AUTOR ─── */
+  .autor-bar {
+    background: #1a3d2b;
+    border-bottom: 1px solid rgba(82,183,136,.25);
+    padding: 10px 24px;
+  }
+  .autor-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .autor-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--verde-cl);
+    color: #fff; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; letter-spacing: .02em;
+  }
+  .autor-nome {
+    font-size: 14px; font-weight: 600; color: #fff; display: block;
+  }
+  .autor-cargo {
+    font-size: 11.5px; color: rgba(255,255,255,.62);
+    display: block; margin-top: 1px; line-height: 1.4;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--creme);
+    color: var(--texto);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--verde);
+    color: #fff;
+    padding: 64px 24px 52px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(82,183,136,.22) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--verde-cl); font-weight: 600; margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600; line-height: 1.15; margin-bottom: 16px;
+  }
+  .hero h1 em { font-style: italic; color: var(--verde-cl); }
+  .hero-sub {
+    font-size: 16px; color: rgba(255,255,255,.75);
+    max-width: 500px; margin: 0 auto 24px; font-weight: 300;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 40px; padding: 6px 18px;
+    font-size: 12.5px; color: rgba(255,255,255,.82);
+  }
+
+  /* ─── NAV ─── */
+  .nav-interno {
+    background: var(--branco);
+    border-bottom: 1px solid var(--borda);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 24px;
+  }
+  .nav-interno ul {
+    list-style: none; display: flex; gap: 0;
+    max-width: 900px; margin: 0 auto;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-interno ul::-webkit-scrollbar { display: none; }
+  .nav-interno a {
+    display: block; padding: 15px 16px;
+    font-size: 13px; font-weight: 500;
+    color: var(--texto-3); text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-interno a:hover { color: var(--verde); border-color: var(--verde-cl); }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--borda); }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--verde-cl); font-weight: 600; margin-bottom: 10px;
+  }
+  .section-titulo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600; color: var(--verde);
+    line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-texto {
+    font-size: 15px; color: var(--texto-2);
+    max-width: 680px; margin-bottom: 14px; line-height: 1.75;
+  }
+
+  /* ─── LEGENDA FODMAP ─── */
+  .legenda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px; margin: 28px 0;
+  }
+  .leg-card {
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    border-left: 4px solid transparent;
+  }
+  .leg-card.frutose  { background: #FFF3E0; border-color: #E8860A; }
+  .leg-card.lactose  { background: #E3F2FD; border-color: #1976D2; }
+  .leg-card.frutanos { background: #EDE7F6; border-color: #7B1FA2; }
+  .leg-card.poliois  { background: #FCE4EC; border-color: #C2185B; }
+  .leg-card.gos      { background: #E8F5E9; border-color: #388E3C; }
+
+  .leg-tag {
+    display: inline-block; font-size: 10.5px; font-weight: 700;
+    letter-spacing: .07em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 20px; margin-bottom: 5px;
+  }
+  .frutose  .leg-tag { background: #E8860A; color: #fff; }
+  .lactose  .leg-tag { background: #1976D2; color: #fff; }
+  .frutanos .leg-tag { background: #7B1FA2; color: #fff; }
+  .poliois  .leg-tag { background: #C2185B; color: #fff; }
+  .gos      .leg-tag { background: #388E3C; color: #fff; }
+
+  .leg-nome { font-size: 13px; font-weight: 600; color: var(--texto); display: block; margin-bottom: 4px; }
+  .leg-desc { font-size: 12px; color: var(--texto-2); line-height: 1.5; }
+  .leg-ex   { font-size: 11px; color: var(--texto-3); font-style: italic; margin-top: 4px; display: block; }
+
+  /* ─── FILTROS ─── */
+  .filtros-wrap {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+  }
+  .filtro-btn {
+    padding: 7px 16px; border-radius: 24px;
+    border: 1.5px solid var(--borda);
+    background: var(--branco); color: var(--texto-3);
+    font-size: 13px; font-family: 'Inter', sans-serif;
+    cursor: pointer; transition: all .18s; font-weight: 500;
+  }
+  .filtro-btn:hover { border-color: var(--verde-cl); color: var(--verde); }
+  .filtro-btn.ativo { background: var(--verde); border-color: var(--verde); color: #fff; }
+
+  /* ─── SEÇÃO DE CATEGORIA ─── */
+  .cat-section { margin-bottom: 36px; }
+  .cat-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--borda);
+  }
+  .cat-emoji { font-size: 24px; }
+  .cat-nome  { font-size: 18px; font-weight: 600; color: var(--verde); font-family: 'Playfair Display', serif; }
+  .cat-count { font-size: 12px; color: var(--texto-3); margin-left: auto; }
+
+  .cat-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 520px) { .cat-cols { grid-template-columns: 1fr; } }
+
+  .col-alto, .col-baixo {
+    border-radius: var(--radius);
+    padding: 12px 14px;
+  }
+  .col-alto  { background: var(--alto-bg);  border: 1px solid #F7C1C1; }
+  .col-baixo { background: var(--baixo-bg); border: 1px solid #C0DD97; }
+
+  .col-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .09em;
+    text-transform: uppercase; display: flex; align-items: center;
+    gap: 5px; margin-bottom: 10px;
+  }
+  .col-alto  .col-label { color: var(--alto-tx); }
+  .col-baixo .col-label { color: var(--baixo-tx); }
+
+  .food-item {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(0,0,0,.07);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .food-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .food-nome { font-size: 13px; color: var(--texto); line-height: 1.3; }
+  .food-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+
+  .tag {
+    display: inline-block; padding: 1px 7px;
+    border-radius: 8px; font-size: 10px; font-weight: 600;
+  }
+  .tag-frutose  { background: var(--frutose-bg);  color: var(--frutose-tx); }
+  .tag-lactose  { background: var(--lactose-bg);  color: var(--lactose-tx); }
+  .tag-frutanos { background: var(--frutanos-bg); color: var(--frutanos-tx); }
+  .tag-poliois  { background: var(--poliois-bg);  color: var(--poliois-tx); }
+  .tag-gos      { background: var(--gos-bg);      color: var(--gos-tx); }
+  .tag-baixo    { color: var(--baixo-tx); font-size: 10px; font-style: italic; }
+
+  /* ─── NOTA RODAPÉ ─── */
+  .nota {
+    font-size: 12.5px; color: var(--texto-3);
+    border-top: 1px solid var(--borda);
+    margin-top: 40px; padding-top: 16px;
+    line-height: 1.6;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--verde); color: rgba(255,255,255,.7);
+    text-align: center; padding: 36px 24px; font-size: 13px;
+  }
+  footer strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="autor-bar">
+  <div class="autor-inner">
+    <span class="autor-avatar">RN</span>
+    <div class="autor-info">
+      <span class="autor-nome">Dr. Ramon Nicotari</span>
+      <span class="autor-cargo">Nutricionista · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia · Instituto RN · Materiais Educativos</span>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <p class="hero-eyebrow">Guia de Alimentos</p>
+  <h1>Tabela <em>Low FODMAP</em></h1>
+  <p class="hero-sub">Alto × Baixo FODMAP separados por categoria, com identificação do tipo de carboidrato fermentável.</p>
+  <span class="hero-badge">✦ Baseado em Monash University</span>
+</header>
+
+<!-- NAV -->
+<nav class="nav-interno" aria-label="Seções">
+  <ul>
+    <li><a href="#legenda">O que é cada FODMAP</a></li>
+    <li><a href="#tabela">Tabela de alimentos</a></li>
+  </ul>
+</nav>
+
+<!-- LEGENDA -->
+<section id="legenda">
+  <div class="container">
+    <p class="section-eyebrow">Entenda os tipos</p>
+    <h2 class="section-titulo">O que é cada tipo de FODMAP?</h2>
+    <p class="section-texto">
+      Cada alimento alto em FODMAP pertence a um ou mais grupos de carboidratos fermentativos. Conhecer o tipo ajuda a identificar o que o seu corpo tolera durante o protocolo de reintrodução.
+    </p>
+
+    <div class="legenda-grid">
+      <div class="leg-card frutose">
+        <span class="leg-tag">Frutose</span>
+        <span class="leg-nome">Excesso de frutose</span>
+        <p class="leg-desc">Açúcar presente em frutas e mel. O problema ocorre quando a frutose supera a glicose, dificultando a absorção no intestino delgado.</p>
+        <span class="leg-ex">Mel, manga, maçã, pêra, xarope de milho, agave.</span>
+      </div>
+      <div class="leg-card lactose">
+        <span class="leg-tag">Lactose</span>
+        <span class="leg-nome">Dissacarídeo do leite</span>
+        <p class="leg-desc">Açúcar naturalmente presente no leite e derivados. Quem tem baixa produção de lactase não consegue digeri-la adequadamente.</p>
+        <span class="leg-ex">Leite, iogurte, sorvete, queijos frescos, cottage, ricota.</span>
+      </div>
+      <div class="leg-card frutanos">
+        <span class="leg-tag">Frutanos</span>
+        <span class="leg-nome">Cadeias de frutose (FOS / inulina)</span>
+        <p class="leg-desc">Carboidratos formados por cadeias de frutose. Nenhum ser humano possui enzima para digeri-los — 100% fermentados pelas bactérias intestinais.</p>
+        <span class="leg-ex">Trigo, centeio, cevada, alho, cebola, aspargos, brócolis.</span>
+      </div>
+      <div class="leg-card poliois">
+        <span class="leg-tag">Poliós</span>
+        <span class="leg-nome">Álcoois de açúcar (sorbitol e manitol)</span>
+        <p class="leg-desc">Encontrados em algumas frutas e vegetais, e usados como adoçantes industriais ("diet" e "zero"). Absorvidos de forma lenta e incompleta.</p>
+        <span class="leg-ex">Maçã, pêssego, abacate, cogumelo, sorbitol, xilitol.</span>
+      </div>
+      <div class="leg-card gos">
+        <span class="leg-tag">GOS</span>
+        <span class="leg-nome">Galacto-oligossacarídeos</span>
+        <p class="leg-desc">Presentes em leguminosas. O intestino humano não produz a enzima alfa-galactosidase para digeri-los — chegam intactos ao cólon e são fermentados.</p>
+        <span class="leg-ex">Feijões, grão de bico, lentilha, soja, pistache, castanha de caju.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABELA -->
+<section id="tabela">
+  <div class="container">
+    <p class="section-eyebrow">Consulta rápida</p>
+    <h2 class="section-titulo">Alimentos por categoria</h2>
+    <p class="section-texto">
+      Cada categoria mostra os alimentos <strong style="color:#791F1F">altos em FODMAP</strong> (com o tipo identificado) e as <strong style="color:#27500A">alternativas permitidas</strong> durante a fase de eliminação.
+    </p>
+
+    <div class="filtros-wrap" id="filtros"></div>
+    <div id="categorias"></div>
+
+    <p class="nota">
+      <strong>Fonte:</strong> Monash University / materiais clínicos Low FODMAP.<br>
+      A tolerância individual varia. Os alimentos altos em FODMAP <strong>não devem ser eliminados permanentemente</strong> — o protocolo prevê reintrodução gradual com acompanhamento profissional.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Dr. Ramon Nicotari</strong> · Nutricionista · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia</p>
+  <p style="margin-top:8px;">Instituto RN · Materiais Educativos · Fonte científica: Monash University, Austrália</p>
+</footer>
+
+<script>
+const tagClass = {
+  "Frutose":"tag-frutose","Lactose":"tag-lactose",
+  "Frutanos":"tag-frutanos","Poliós":"tag-poliois","GOS":"tag-gos"
+};
+
+const secoes = [
+  { emoji:"🍎", nome:"Frutas",
+    alto:[
+      {nome:"Maçã",            tags:["Frutose","Poliós"]},
+      {nome:"Pêra",            tags:["Frutose","Poliós"]},
+      {nome:"Manga",           tags:["Frutose"]},
+      {nome:"Melancia",        tags:["Frutose","Frutanos"]},
+      {nome:"Pêssego",         tags:["Poliós"]},
+      {nome:"Nectarina",       tags:["Poliós"]},
+      {nome:"Ameixa",          tags:["Poliós"]},
+      {nome:"Damasco",         tags:["Poliós"]},
+      {nome:"Abacate",         tags:["Poliós"]},
+      {nome:"Cereja",          tags:["Frutose","Poliós"]},
+      {nome:"Lichia",          tags:["Poliós"]},
+      {nome:"Caqui",           tags:["Frutanos"]},
+      {nome:"Tâmaras",         tags:["Frutanos","Frutose"]},
+      {nome:"Frutas secas (geral)",tags:["Frutose","Poliós","Frutanos"]},
+    ],
+    baixo:["Laranja","Banana madura","Uvas","Kiwi","Morango","Abacaxi","Mamão","Framboesas","Melão cantaloupe"]
+  },
+  { emoji:"🥦", nome:"Vegetais",
+    alto:[
+      {nome:"Alho",       tags:["Frutanos"]},
+      {nome:"Cebola",     tags:["Frutanos"]},
+      {nome:"Alho-poró",  tags:["Frutanos"]},
+      {nome:"Alcachofra", tags:["Frutanos","Frutose","GOS"]},
+      {nome:"Aspargos",   tags:["Frutanos","Frutose"]},
+      {nome:"Ervilha",    tags:["GOS","Frutanos"]},
+      {nome:"Cogumelo",   tags:["Poliós"]},
+      {nome:"Couve-flor", tags:["Poliós","Frutanos"]},
+      {nome:"Brócolis",   tags:["Frutanos"]},
+      {nome:"Beterraba",  tags:["Frutanos","GOS"]},
+      {nome:"Batata-doce",tags:["Poliós"]},
+      {nome:"Aipo (salsão)",tags:["Poliós"]},
+    ],
+    baixo:["Pimentão","Abobrinha","Batata inglesa","Feijão verde","Berinjela","Cenoura","Abóbora","Alface","Pepino","Tomate"]
+  },
+  { emoji:"🍞", nome:"Grãos e cereais",
+    alto:[
+      {nome:"Trigo",                  tags:["Frutanos"]},
+      {nome:"Centeio",                tags:["Frutanos"]},
+      {nome:"Cevada",                 tags:["Frutanos"]},
+      {nome:"Pão de trigo / centeio", tags:["Frutanos"]},
+      {nome:"Macarrão de trigo",      tags:["Frutanos"]},
+      {nome:"Cuscuz",                 tags:["Frutanos"]},
+    ],
+    baixo:["Arroz","Quinoa","Aveia","Farinha de milho","Macarrão sem glúten","Bolachas de arroz","Macarrão konjac"]
+  },
+  { emoji:"🥛", nome:"Laticínios",
+    alto:[
+      {nome:"Leite de vaca",                   tags:["Lactose"]},
+      {nome:"Iogurte com sabor",               tags:["Lactose"]},
+      {nome:"Sorvete",                         tags:["Lactose"]},
+      {nome:"Queijo branco / cottage / ricota",tags:["Lactose"]},
+      {nome:"Creme de leite",                  tags:["Lactose"]},
+      {nome:"Leite condensado",                tags:["Lactose"]},
+    ],
+    baixo:["Leite sem lactose","Queijos amarelos (parmesão, cheddar)","Manteiga / ghee","Leite de amêndoa / arroz","Iogurte natural (pequena qtd.)"]
+  },
+  { emoji:"🫘", nome:"Leguminosas e oleaginosas",
+    alto:[
+      {nome:"Feijão preto / branco / vermelho",tags:["GOS"]},
+      {nome:"Soja / tofu / leite de soja",     tags:["GOS"]},
+      {nome:"Pistache",                        tags:["GOS","Frutanos"]},
+      {nome:"Castanha de caju",                tags:["GOS","Frutanos"]},
+    ],
+    baixo:["Grão de bico enlatado (½ xíc.)","Lentilha cozida","Ervilha enlatada (lavada)","Amendoim","Macadâmia","Castanha do Pará"]
+  },
+  { emoji:"🥩", nome:"Carnes, aves e ovos",
+    alto:[
+      {nome:"Linguiça / salame / salsicha",    tags:["Frutanos"]},
+      {nome:"Carnes com molhos prontos",       tags:["Frutanos"]},
+    ],
+    baixo:["Carnes e aves cozidas simples","Frutos do mar","Ovos"]
+  },
+  { emoji:"🍯", nome:"Açúcares e adoçantes",
+    alto:[
+      {nome:"Mel",                              tags:["Frutose"]},
+      {nome:"Xarope de milho / agave / melaço", tags:["Frutose"]},
+      {nome:"Sorbitol / manitol / xilitol",     tags:["Poliós"]},
+    ],
+    baixo:["Açúcar refinado","Chocolate amargo","Maple syrup (xarope de bordo)"]
+  },
+  { emoji:"🌿", nome:"Temperos e molhos",
+    alto:[
+      {nome:"Molhos com alho e cebola",     tags:["Frutanos"]},
+      {nome:"Marinadas industrializadas",   tags:["Frutanos"]},
+    ],
+    baixo:["Açafrão","Orégano","Canela","Gengibre","Maionese caseira","Shoyu","Suco de cranberry"]
+  },
+];
+
+const catFiltros = [
+  {id:"todos", label:"Todas as categorias"},
+  ...secoes.map(s => ({id:s.nome, label: s.emoji + " " + s.nome}))
+];
+
+let filtroAtual = "todos";
+const filtrosEl   = document.getElementById("filtros");
+const categoriasEl = document.getElementById("categorias");
+
+function buildFiltros() {
+  filtrosEl.innerHTML = "";
+  catFiltros.forEach(f => {
+    const btn = document.createElement("button");
+    btn.className = "filtro-btn" + (filtroAtual === f.id ? " ativo" : "");
+    btn.textContent = f.label;
+    btn.onclick = () => { filtroAtual = f.id; buildFiltros(); renderCategorias(); };
+    filtrosEl.appendChild(btn);
+  });
+}
+
+function renderCategorias() {
+  categoriasEl.innerHTML = "";
+  const lista = filtroAtual === "todos" ? secoes : secoes.filter(s => s.nome === filtroAtual);
+
+  lista.forEach(sec => {
+    const total = sec.alto.length + sec.baixo.length;
+    const div = document.createElement("div");
+    div.className = "cat-section";
+
+    const altoHtml = sec.alto.map(item => {
+      const tagsHtml = item.tags.map(t => `<span class="tag ${tagClass[t]}">${t}</span>`).join("");
+      return `<div class="food-item"><span class="food-nome">${item.nome}</span><div class="food-tags">${tagsHtml}</div></div>`;
+    }).join("");
+
+    const baixoHtml = sec.baixo.map(nome =>
+      `<div class="food-item"><span class="food-nome">${nome}</span></div>`
+    ).join("");
+
+    div.innerHTML = `
+      <div class="cat-header">
+        <span class="cat-emoji">${sec.emoji}</span>
+        <span class="cat-nome">${sec.nome}</span>
+        <span class="cat-count">${total} alimentos</span>
+      </div>
+      <div class="cat-cols">
+        <div class="col-alto">
+          <div class="col-label">🔴 Alto FODMAP</div>
+          ${altoHtml}
+        </div>
+        <div class="col-baixo">
+          <div class="col-label">🟢 Baixo FODMAP</div>
+          ${baixoHtml}
+        </div>
+      </div>
+    `;
+    categoriasEl.appendChild(div);
+  });
+}
+
+buildFiltros();
+renderCategorias();
+</script>
+</body>
+</html>
