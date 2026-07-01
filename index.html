@@ -57,10 +57,6 @@
     margin-bottom: 36px;
     box-shadow: 0 2px 12px rgba(45,106,79,.07);
   }
-  @media (max-width: 540px) {
-    .autor-card { flex-wrap: wrap; gap: 12px; }
-    .ig-btn { margin-left: 0; }
-  }
   .autor-avatar {
     width: 52px; height: 52px; border-radius: 50%;
     background: var(--verde);
@@ -77,6 +73,30 @@
   .autor-cargo {
     font-size: 12px; color: var(--texto-3);
     display: block; line-height: 1.5;
+  }
+
+  /* mobile: empilha tudo verticalmente */
+  @media (max-width: 600px) {
+    .autor-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 18px;
+    }
+    .autor-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .ig-btn {
+      width: 100%;
+      justify-content: center;
+      margin-left: 0;
+    }
+  }
+  @media (min-width: 601px) {
+    .autor-top { display: contents; }
   }
   .ig-btn {
     display: inline-flex; align-items: center; gap: 8px;
@@ -260,6 +280,8 @@
   }
   .col-alto  { background: var(--alto-bg);  border: 1px solid #F7C1C1; }
   .col-baixo { background: var(--baixo-bg); border: 1px solid #C0DD97; }
+  .col-mod   { background: #FFF8E7; border: 1px solid #F0C040; border-radius: var(--radius); padding: 12px 14px; }
+  .col-mod .col-label { color: #8A5A00; }
 
   .col-label {
     font-size: 11px; font-weight: 700; letter-spacing: .09em;
@@ -417,10 +439,12 @@
 
     <!-- Card do autor -->
     <div class="autor-card">
-      <span class="autor-avatar">RN</span>
-      <div class="autor-info">
-        <span class="autor-nome">Dr. Ramon Nicotari</span>
-        <span class="autor-cargo">Nutricionista CRN3-31139 · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia · Foco em Suplementação Avançada · Anti-SASP | Genética | Autoimunes</span>
+      <div class="autor-top">
+        <span class="autor-avatar">RN</span>
+        <div class="autor-info">
+          <span class="autor-nome">Dr. Ramon Nicotari</span>
+          <span class="autor-cargo">Nutricionista CRN3-31139 · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia · Foco em Suplementação Avançada · Anti-SASP | Genética | Autoimunes</span>
+        </div>
       </div>
       <a class="ig-btn" href="https://www.instagram.com/ramonnicotari" target="_blank" rel="noopener" aria-label="Instagram Dr. Ramon Nicotari">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -649,37 +673,39 @@ const tagClass = {
 const secoes = [
   { emoji:"🍎", nome:"Frutas",
     alto:[
-      {nome:"Maçã",            tags:["Frutose","Poliós"]},
-      {nome:"Pêra",            tags:["Frutose","Poliós"]},
-      {nome:"Manga",           tags:["Frutose"]},
-      {nome:"Melancia",        tags:["Frutose","Frutanos"]},
-      {nome:"Pêssego",         tags:["Poliós"]},
-      {nome:"Nectarina",       tags:["Poliós"]},
-      {nome:"Ameixa",          tags:["Poliós"]},
-      {nome:"Damasco",         tags:["Poliós"]},
-      {nome:"Abacate",         tags:["Poliós"]},
-      {nome:"Cereja",          tags:["Frutose","Poliós"]},
-      {nome:"Lichia",          tags:["Poliós"]},
-      {nome:"Caqui",           tags:["Frutanos"]},
-      {nome:"Tâmaras",         tags:["Frutanos","Frutose"]},
+      {nome:"Maçã",                tags:["Frutose","Poliós"]},
+      {nome:"Pêra",                tags:["Frutose","Poliós"]},
+      {nome:"Manga",               tags:["Frutose"]},
+      {nome:"Melancia",            tags:["Frutose","Frutanos"]},
+      {nome:"Pêssego",             tags:["Poliós"]},
+      {nome:"Nectarina",           tags:["Poliós"]},
+      {nome:"Ameixa",              tags:["Poliós"]},
+      {nome:"Damasco",             tags:["Poliós"]},
+      {nome:"Abacate",             tags:["Poliós"]},
+      {nome:"Cereja",              tags:["Frutose","Poliós"]},
+      {nome:"Lichia",              tags:["Poliós"]},
+      {nome:"Caqui",               tags:["Frutanos"]},
+      {nome:"Tâmaras",             tags:["Frutanos","Frutose"]},
       {nome:"Frutas secas (geral)",tags:["Frutose","Poliós","Frutanos"]},
     ],
     baixo:["Laranja","Banana madura","Uvas","Kiwi","Morango","Abacaxi","Mamão","Framboesas","Melão cantaloupe"]
   },
   { emoji:"🥦", nome:"Vegetais",
     alto:[
-      {nome:"Alho",       tags:["Frutanos"]},
-      {nome:"Cebola",     tags:["Frutanos"]},
-      {nome:"Alho-poró",  tags:["Frutanos"]},
-      {nome:"Alcachofra", tags:["Frutanos","Frutose","GOS"]},
-      {nome:"Aspargos",   tags:["Frutanos","Frutose"]},
-      {nome:"Ervilha",    tags:["GOS","Frutanos"]},
-      {nome:"Cogumelo",   tags:["Poliós"]},
-      {nome:"Couve-flor", tags:["Poliós","Frutanos"]},
-      {nome:"Brócolis",   tags:["Frutanos"]},
-      {nome:"Beterraba",  tags:["Frutanos","GOS"]},
-      {nome:"Batata-doce",tags:["Poliós"]},
-      {nome:"Aipo (salsão)",tags:["Poliós"]},
+      {nome:"Alho",              tags:["Frutanos"]},
+      {nome:"Cebola",            tags:["Frutanos"]},
+      {nome:"Alho-poró",         tags:["Frutanos"]},
+      {nome:"Alcachofra",        tags:["Frutanos","Frutose","GOS"]},
+      {nome:"Aspargos",          tags:["Frutanos","Frutose"]},
+      {nome:"Ervilha",           tags:["GOS","Frutanos"]},
+      {nome:"Cogumelo",          tags:["Poliós"]},
+      {nome:"Couve-flor",        tags:["Poliós","Frutanos"]},
+      {nome:"Brócolis",          tags:["Frutanos"]},
+      {nome:"Beterraba",         tags:["Frutanos","GOS"]},
+      {nome:"Batata-doce",       tags:["Poliós"]},
+      {nome:"Aipo (salsão)",     tags:["Poliós"]},
+      {nome:"Repolho",           tags:["Frutanos"]},
+      {nome:"Quiabo",            tags:["Frutanos","GOS"]},
     ],
     baixo:["Pimentão","Abobrinha","Batata inglesa","Feijão verde","Berinjela","Cenoura","Abóbora","Alface","Pepino","Tomate"]
   },
@@ -692,27 +718,31 @@ const secoes = [
       {nome:"Macarrão de trigo",      tags:["Frutanos"]},
       {nome:"Cuscuz",                 tags:["Frutanos"]},
     ],
-    baixo:["Arroz","Quinoa","Aveia","Farinha de milho","Macarrão sem glúten","Bolachas de arroz","Macarrão konjac"]
+    baixo:["Arroz","Quinoa","Aveia","Farinha de milho","Macarrão sem glúten","Bolachas de arroz","Macarrão konjac"],
+    moderado:["Lentilha (porção controlada)","Grão de bico (½ xíc. enlatado)"]
   },
   { emoji:"🥛", nome:"Laticínios",
     alto:[
-      {nome:"Leite de vaca",                   tags:["Lactose"]},
-      {nome:"Iogurte com sabor",               tags:["Lactose"]},
-      {nome:"Sorvete",                         tags:["Lactose"]},
-      {nome:"Queijo branco / cottage / ricota",tags:["Lactose"]},
-      {nome:"Creme de leite",                  tags:["Lactose"]},
-      {nome:"Leite condensado",                tags:["Lactose"]},
+      {nome:"Leite de vaca",                        tags:["Lactose"]},
+      {nome:"Iogurte com sabor",                    tags:["Lactose"]},
+      {nome:"Sorvete",                              tags:["Lactose"]},
+      {nome:"Queijo branco / cottage / ricota",     tags:["Lactose"]},
+      {nome:"Creme de leite",                       tags:["Lactose"]},
+      {nome:"Leite condensado",                     tags:["Lactose"]},
+      {nome:"Creme chantilly",                      tags:["Lactose"]},
     ],
-    baixo:["Leite sem lactose","Queijos amarelos (parmesão, cheddar)","Manteiga / ghee","Leite de amêndoa / arroz","Iogurte natural (pequena qtd.)"]
+    baixo:["Leite sem lactose","Queijos amarelos (parmesão, cheddar)","Manteiga / ghee","Leite de amêndoa / arroz","Iogurte natural (pequena qtd.)"],
+    moderado:["Queijo feta","Mozzarella","Brie"]
   },
   { emoji:"🫘", nome:"Leguminosas e oleaginosas",
     alto:[
-      {nome:"Feijão preto / branco / vermelho",tags:["GOS"]},
-      {nome:"Soja / tofu / leite de soja",     tags:["GOS"]},
-      {nome:"Pistache",                        tags:["GOS","Frutanos"]},
-      {nome:"Castanha de caju",                tags:["GOS","Frutanos"]},
+      {nome:"Feijão preto / branco / vermelho", tags:["GOS"]},
+      {nome:"Tofu",                             tags:["GOS"]},
+      {nome:"Soja / leite de soja",             tags:["GOS"]},
+      {nome:"Pistache",                         tags:["GOS","Frutanos"]},
+      {nome:"Castanha de caju",                 tags:["GOS","Frutanos"]},
     ],
-    baixo:["Grão de bico enlatado (½ xíc.)","Lentilha cozida","Ervilha enlatada (lavada)","Amendoim","Macadâmia","Castanha do Pará"]
+    baixo:["Amendoim","Macadâmia","Castanha do Pará","Nozes","Sementes de girassol","Gergelim"]
   },
   { emoji:"🥩", nome:"Carnes, aves e ovos",
     alto:[
@@ -723,16 +753,17 @@ const secoes = [
   },
   { emoji:"🍯", nome:"Açúcares e adoçantes",
     alto:[
-      {nome:"Mel",                              tags:["Frutose"]},
-      {nome:"Xarope de milho / agave / melaço", tags:["Frutose"]},
-      {nome:"Sorbitol / manitol / xilitol",     tags:["Poliós"]},
+      {nome:"Mel",                    tags:["Frutose"]},
+      {nome:"Agave",                  tags:["Frutose"]},
+      {nome:"Xarope de milho / melaço",tags:["Frutose"]},
+      {nome:"Sorbitol / manitol / xilitol", tags:["Poliós"]},
     ],
-    baixo:["Açúcar refinado","Chocolate amargo","Maple syrup (xarope de bordo)"]
+    baixo:["Açúcar refinado","Açúcar mascavo","Chocolate amargo","Maple syrup (xarope de bordo)"]
   },
   { emoji:"🌿", nome:"Temperos e molhos",
     alto:[
-      {nome:"Molhos com alho e cebola",     tags:["Frutanos"]},
-      {nome:"Marinadas industrializadas",   tags:["Frutanos"]},
+      {nome:"Molhos com alho e cebola",   tags:["Frutanos"]},
+      {nome:"Marinadas industrializadas", tags:["Frutanos"]},
     ],
     baixo:["Açafrão","Orégano","Canela","Gengibre","Maionese caseira","Shoyu","Suco de cranberry"]
   },
@@ -763,7 +794,7 @@ function renderCategorias() {
   const lista = filtroAtual === "todos" ? secoes : secoes.filter(s => s.nome === filtroAtual);
 
   lista.forEach(sec => {
-    const total = sec.alto.length + sec.baixo.length;
+    const total = sec.alto.length + sec.baixo.length + (sec.moderado ? sec.moderado.length : 0);
     const div = document.createElement("div");
     div.className = "cat-section";
 
@@ -776,17 +807,28 @@ function renderCategorias() {
       `<div class="food-item"><span class="food-nome">${nome}</span></div>`
     ).join("");
 
+    const modHtml = sec.moderado ? sec.moderado.map(nome =>
+      `<div class="food-item"><span class="food-nome">${nome}</span></div>`
+    ).join("") : "";
+
+    const temMod = sec.moderado && sec.moderado.length > 0;
+    const colsStyle = temMod ? "grid-template-columns: 1fr 1fr 1fr;" : "grid-template-columns: 1fr 1fr;";
+
     div.innerHTML = `
       <div class="cat-header">
         <span class="cat-emoji">${sec.emoji}</span>
         <span class="cat-nome">${sec.nome}</span>
         <span class="cat-count">${total} alimentos</span>
       </div>
-      <div class="cat-cols">
+      <div class="cat-cols" style="${colsStyle}">
         <div class="col-alto">
           <div class="col-label">🔴 Alto FODMAP</div>
           ${altoHtml}
         </div>
+        ${temMod ? `<div class="col-mod">
+          <div class="col-label">🟡 Moderado</div>
+          ${modHtml}
+        </div>` : ""}
         <div class="col-baixo">
           <div class="col-label">🟢 Baixo FODMAP</div>
           ${baixoHtml}
