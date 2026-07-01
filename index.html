@@ -290,7 +290,84 @@
   .tag-gos      { background: var(--gos-bg);      color: var(--gos-tx); }
   .tag-baixo    { color: var(--baixo-tx); font-size: 10px; font-style: italic; }
 
-  /* ─── NOTA RODAPÉ ─── */
+  /* ─── SEÇÕES INFORMATIVAS ─── */
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--borda); }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--verde-cl); font-weight: 600; margin-bottom: 10px;
+  }
+  .section-titulo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600; color: var(--verde);
+    line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-texto {
+    font-size: 15px; color: var(--texto-2);
+    max-width: 680px; margin-bottom: 14px; line-height: 1.75;
+  }
+
+  /* sigla */
+  .sigla-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin: 28px 0;
+  }
+  .sigla-card {
+    background: var(--branco); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 16px; text-align: center;
+  }
+  .sigla-letra {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 600; color: var(--verde);
+    display: block; line-height: 1; margin-bottom: 4px;
+  }
+  .sigla-nome { font-size: 11.5px; font-weight: 600; color: #5C3D1E; display: block; margin-bottom: 3px; }
+  .sigla-desc { font-size: 11px; color: var(--texto-3); line-height: 1.4; }
+
+  /* fases */
+  .fases-wrap {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 16px; margin: 28px 0;
+  }
+  @media (max-width: 540px) { .fases-wrap { grid-template-columns: 1fr; } }
+  .fase-card {
+    background: var(--branco); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 20px 18px;
+  }
+  .fase-numero {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 600; color: var(--verde-bg);
+    line-height: 1; margin-bottom: 6px;
+  }
+  .fase-titulo { font-size: 15px; font-weight: 600; color: var(--verde); margin-bottom: 8px; }
+  .fase-texto  { font-size: 13px; color: var(--texto-2); line-height: 1.6; }
+
+  /* benefícios */
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px; margin: 28px 0;
+  }
+  .beneficio-card {
+    background: var(--branco); border: 1px solid var(--borda);
+    border-radius: var(--radius); padding: 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .beneficio-icone { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+  .beneficio-titulo { font-size: 14px; font-weight: 600; color: var(--texto); margin-bottom: 3px; }
+  .beneficio-desc   { font-size: 12.5px; color: var(--texto-3); line-height: 1.5; }
+
+  /* alerta */
+  .alerta {
+    background: #FFF8E7; border: 1px solid #F0C040;
+    border-radius: var(--radius); padding: 18px 20px;
+    display: flex; gap: 12px; align-items: flex-start;
+    margin: 24px 0; font-size: 14px; color: #5C3D1E;
+  }
+  .alerta-icone { font-size: 20px; flex-shrink: 0; }
   .nota {
     font-size: 12.5px; color: var(--texto-3);
     border-top: 1px solid var(--borda);
@@ -320,20 +397,22 @@
 <header class="hero">
   <p class="hero-eyebrow">Guia de Alimentos</p>
   <h1>Tabela <em>Low FODMAP</em></h1>
-  <p class="hero-sub">Alto × Baixo FODMAP separados por categoria, com identificação do tipo de carboidrato fermentável.</p>
   <span class="hero-badge">✦ Baseado em Monash University</span>
 </header>
 
 <!-- NAV -->
 <nav class="nav-interno" aria-label="Seções">
   <ul>
-    <li><a href="#legenda">O que é cada FODMAP</a></li>
+    <li><a href="#o-que-e">O que são FODMAPs</a></li>
+    <li><a href="#protocolo">Como funciona</a></li>
+    <li><a href="#beneficios">Benefícios</a></li>
+    <li><a href="#legenda">Tipos de FODMAP</a></li>
     <li><a href="#tabela">Tabela de alimentos</a></li>
   </ul>
 </nav>
 
-<!-- LEGENDA -->
-<section id="legenda">
+<!-- O QUE SÃO -->
+<section id="o-que-e">
   <div class="container">
 
     <!-- Card do autor -->
@@ -341,7 +420,7 @@
       <span class="autor-avatar">RN</span>
       <div class="autor-info">
         <span class="autor-nome">Dr. Ramon Nicotari</span>
-        <span class="autor-cargo">Nutricionista · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia · Instituto RN · Materiais Educativos</span>
+        <span class="autor-cargo">Nutricionista CRN3-31139 · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia · Foco em Suplementação Avançada · Anti-SASP | Genética | Autoimunes</span>
       </div>
       <a class="ig-btn" href="https://www.instagram.com/ramonnicotari" target="_blank" rel="noopener" aria-label="Instagram Dr. Ramon Nicotari">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -349,6 +428,145 @@
       </a>
     </div>
 
+    <p class="section-eyebrow">Entenda o conceito</p>
+    <h2 class="section-titulo">O que são FODMAPs?</h2>
+    <p class="section-texto">
+      <strong>FODMAP</strong> é uma sigla em inglês para <strong>F</strong>ermentable <strong>O</strong>ligo-, <strong>D</strong>i-, <strong>M</strong>onosaccharides <strong>A</strong>nd <strong>P</strong>olyols — ou seja, <em>carboidratos fermentativos</em>. São açúcares e fibras de difícil absorção no intestino delgado que, ao chegarem ao cólon, são fermentados pelas bactérias intestinais.
+    </p>
+    <p class="section-texto">
+      Essa fermentação produz gás, aumenta a quantidade de água no intestino e causa os sintomas tão conhecidos: inchaço, distensão abdominal, gases, dor, diarreia ou constipação.
+    </p>
+    <div class="sigla-grid">
+      <div class="sigla-card">
+        <span class="sigla-letra">F</span>
+        <span class="sigla-nome">Fermentable</span>
+        <span class="sigla-desc">Fermentáveis pelas bactérias do intestino grosso</span>
+      </div>
+      <div class="sigla-card">
+        <span class="sigla-letra">O</span>
+        <span class="sigla-nome">Oligossacarídeos</span>
+        <span class="sigla-desc">Frutanos e GOS — cadeias de açúcar não absorvíveis</span>
+      </div>
+      <div class="sigla-card">
+        <span class="sigla-letra">D</span>
+        <span class="sigla-nome">Dissacarídeos</span>
+        <span class="sigla-desc">Lactose — açúcar do leite e derivados</span>
+      </div>
+      <div class="sigla-card">
+        <span class="sigla-letra">M</span>
+        <span class="sigla-nome">Monossacarídeos</span>
+        <span class="sigla-desc">Frutose em excesso — mel, frutas, xarope de milho</span>
+      </div>
+      <div class="sigla-card">
+        <span class="sigla-letra">A</span>
+        <span class="sigla-nome">And (e)</span>
+        <span class="sigla-desc">Conectivo da sigla</span>
+      </div>
+      <div class="sigla-card">
+        <span class="sigla-letra">P</span>
+        <span class="sigla-nome">Poliós</span>
+        <span class="sigla-desc">Sorbitol e manitol — álcoois de açúcar</span>
+      </div>
+    </div>
+    <p class="section-texto">
+      Esses carboidratos estão presentes em alimentos do dia a dia como maçã, pêra, manga, alho, cebola, trigo, leite e feijão. Não são ruins por natureza — o problema ocorre quando o intestino não consegue absorvê-los adequadamente, desencadeando sintomas.
+    </p>
+    <p class="section-texto">
+      Cerca de <strong>10 a 15% da população</strong> é afetada pela Síndrome do Intestino Irritável (SII), e a dieta Low FODMAP foi desenvolvida pela <strong>Monash University (Austrália)</strong> justamente para controlar esses sintomas com alto grau de eficácia científica.
+    </p>
+  </div>
+</section>
+
+<!-- PROTOCOLO -->
+<section id="protocolo">
+  <div class="container">
+    <p class="section-eyebrow">O passo a passo</p>
+    <h2 class="section-titulo">Como funciona o protocolo?</h2>
+    <p class="section-texto">
+      A estratégia Low FODMAP é dividida em fases e deve ser feita com acompanhamento de um nutricionista. Não é uma dieta definitiva — é um protocolo de investigação para identificar o que o seu corpo tolera.
+    </p>
+    <div class="fases-wrap">
+      <div class="fase-card">
+        <div class="fase-numero">01</div>
+        <div class="fase-titulo">Fase de eliminação</div>
+        <p class="fase-texto">Duração de <strong>2 a 8 semanas</strong>. Todos os alimentos altos em FODMAP são retirados da dieta. O objetivo é "silenciar" o intestino e reduzir os sintomas significativamente.</p>
+      </div>
+      <div class="fase-card">
+        <div class="fase-numero">02</div>
+        <div class="fase-titulo">Fase de reintrodução</div>
+        <p class="fase-texto">Cada grupo de FODMAP é reintroduzido <strong>um por vez</strong>, em doses crescentes, para identificar quais causam sintomas e em que quantidade.</p>
+      </div>
+      <div class="fase-card">
+        <div class="fase-numero">03</div>
+        <div class="fase-titulo">Dieta personalizada</div>
+        <p class="fase-texto">Com base nos testes, é montada uma <strong>dieta individual e equilibrada</strong> — eliminando apenas o que realmente incomoda, com a maior variedade possível de alimentos.</p>
+      </div>
+    </div>
+    <div class="alerta">
+      <span class="alerta-icone">⚠️</span>
+      <div>
+        <strong>Importante:</strong> a dieta Low FODMAP não deve ser seguida indefinidamente. Os alimentos altos em FODMAP possuem fibras prebióticas importantes para a saúde da microbiota. O protocolo é uma ferramenta de investigação, não uma restrição permanente. Sempre busque acompanhamento profissional.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section id="beneficios">
+  <div class="container">
+    <p class="section-eyebrow">Por que fazer</p>
+    <h2 class="section-titulo">Benefícios do protocolo Low FODMAP</h2>
+    <p class="section-texto">Estudos da Monash University mostram que cerca de <strong>75% das pessoas com SII</strong> relatam melhora significativa dos sintomas. Mas os benefícios vão além:</p>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🎯</span>
+        <div>
+          <p class="beneficio-titulo">Redução do inchaço</p>
+          <p class="beneficio-desc">Menos fermentação = menos gases e distensão abdominal.</p>
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">😌</span>
+        <div>
+          <p class="beneficio-titulo">Alívio da dor</p>
+          <p class="beneficio-desc">Diminuição das cólicas e desconfortos intestinais frequentes.</p>
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🚽</span>
+        <div>
+          <p class="beneficio-titulo">Regularização do trânsito</p>
+          <p class="beneficio-desc">Melhora tanto da diarreia quanto da constipação associadas à SII.</p>
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🧠</span>
+        <div>
+          <p class="beneficio-titulo">Bem-estar geral</p>
+          <p class="beneficio-desc">Menos sintomas físicos impacta o humor, a energia e a qualidade de vida.</p>
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🔍</span>
+        <div>
+          <p class="beneficio-titulo">Autoconhecimento alimentar</p>
+          <p class="beneficio-desc">Você descobre exatamente quais alimentos o seu corpo tolera.</p>
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🥗</span>
+        <div>
+          <p class="beneficio-titulo">Alimentação de verdade</p>
+          <p class="beneficio-desc">A estratégia incentiva o consumo de alimentos naturais, integrais e nutritivos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGENDA -->
+<section id="legenda">
+  <div class="container">
     <p class="section-eyebrow">Entenda os tipos</p>
     <h2 class="section-titulo">O que é cada tipo de FODMAP?</h2>
     <p class="section-texto">
@@ -418,7 +636,7 @@
 </div>
 
 <footer>
-  <p><strong>Dr. Ramon Nicotari</strong> · Nutricionista · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia</p>
+  <p><strong>Dr. Ramon Nicotari</strong> · Nutricionista CRN3-31139 · Pós-graduado em Nutrição Clínica, Esportiva e Fitoterapia</p>
   <p style="margin-top:8px;">Instituto RN · Materiais Educativos · Fonte científica: Monash University, Austrália</p>
 </footer>
 
